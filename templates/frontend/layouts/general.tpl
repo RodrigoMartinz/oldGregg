@@ -133,7 +133,7 @@
 			  <div class="collapse navbar-collapse justify-content-md-center">
 				<ul class="navbar-nav">
 				  <li class="nav-item active">
-					<a href="http://192.168.1.71/ehmc/index.php/ehm/about/contact" style="color: white;">
+					<a href="http://192.168.1.71/ehmc/index.php/ehm/about/contact">
 						Contacto
 					</a>
 				  </li>

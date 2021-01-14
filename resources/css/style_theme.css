@@ -1,4 +1,8 @@
 .menu-site-footer .nav-item {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.menu-site-footer a {
+    color: white;
 }
