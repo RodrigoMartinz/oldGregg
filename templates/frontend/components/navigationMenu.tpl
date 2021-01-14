@@ -12,11 +12,11 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="primaryNavbarContent">
+        <div class="collapse container navbar-collapse" id="primaryNavbarContent">
             <ul id="{$id|escape}" class="{$ulClass|escape} navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{url page="index"}">
-                    {translate key="plugins.gregg.home"}
+						<i class="fa fa-home"></i>
                     </a>
                 </li>
                 {foreach key=field item=navigationMenuItemAssignment from=$navigationMenu->menuTree}

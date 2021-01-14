@@ -10,6 +10,11 @@
 {assign var="pageTitleTranslated" value=$article->getLocalizedTitle()|escape}
 
 {block name="pageContent"}
+    {if $section}
+        {include file="frontend/components/breadcrumbs_article.tpl" currentTitle=$section->getLocalizedTitle()}
+    {else}
+        {include file="frontend/components/breadcrumbs_article.tpl" currentTitleKey="article.article"}
+    {/if}
 	<div class="jatsParser__container">
 
 		<div class="jatsParser__meta">
@@ -28,9 +33,9 @@
 			<div class="jatsParser__meta-row">
 
                 {* Section title *}
-                {if $article->getSectionTitle()}
+                {if $article->getLocalizedTitle()}
 					<div class="jatsParser__meta-section-title">
-                        {$article->getSectionTitle()|escape}
+                        {$section->getLocalizedTitle()|escape}
 					</div>
                 {/if}
 
@@ -50,7 +55,7 @@
 							<span class="jatsParser__meta-doi-value">
 							<a href="{$doiUrl}">
 								{* maching DOI's (with new and old format) *}
-                                {$doiUrl|regex_replace:"/http.*org\//":" "}
+                                {$doiUrl}
 							</a>
 						</span>
 						</div>
@@ -74,7 +79,7 @@
 
             {* Article title *}
             {if $article->getLocalizedFullTitle()}
-				<h1 class="jatsParser__meta-title">{$article->getLocalizedFullTitle()|escape}</h1>
+				<h1 class="jatsParser__meta-title">{$article->getLocalizedFullTitle()|strip_unsafe_html}</h1>
             {/if}
 
             {* Authors' list *}

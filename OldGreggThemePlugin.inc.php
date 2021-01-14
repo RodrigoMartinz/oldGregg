@@ -68,9 +68,11 @@ class OldGreggThemePlugin extends ThemePlugin
 		$this->addScript('main', 'resources/js/main.js');
 
 		$request = $this->getRequest();
-		if ($request->getRequestedPage() == "article" && (is_array($request->getRequestedArgs()) && count($request->getRequestedArgs()) == 1)) {
+		
+		if (true && (is_array($request->getRequestedArgs()) && count($request->getRequestedArgs()) == 1)) {
 			$this->addScript("article", "resources/js/article.js");
 		}
+		
 
 
 		$this->addStyle(

@@ -56,23 +56,22 @@
 {/capture}
 
 <header class="container-fluid">
+	{* User navigation *}
+	<nav class="usernav navbar navbar-expand navbar-light" aria-label="{translate|escape key="common.navigation.user"}">
+		{load_menu name="user" id="navigationUser" liClass="profile"}
+	</nav>
 	<div class="row">
 		{if $requestedOp == 'index'}
-			<h1 class="journal_branding col-md-4">
+			<h1 class="journal_branding col-md-12">
 				{$smarty.capture.branding}
 			</h1>
 		{else}
-			<div class="journal_branding col-md-4">
+			<div class="journal_branding col-md-12">
 				{$smarty.capture.branding}
 			</div>
 		{/if}
 
-		<div class="navigation_wrapper col-md-8">
-			{* User navigation *}
-			<nav class="usernav navbar navbar-expand navbar-light" aria-label="{translate|escape key="common.navigation.user"}">
-				{load_menu name="user" id="navigationUser" liClass="profile"}
-			</nav>
-
+		<div class="navigation_wrapper col-md-12">
 			{* Primary site navigation *}
 			{capture assign="primaryMenu"}
 				{load_menu name="primary" id="navigationPrimary"}
@@ -86,32 +85,73 @@
 			{/if}
 		</div>
 	</div>
+	
+	<!--->
+	<div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <form class="input-group" action="{url page="search" op="search"}" method="post" role="search">
+                        {csrf}
+                        <input type="text" name="query" value="{$searchQuery|escape}" class="search-input-tag form-control"
+                               placeholder="{translate key="plugins.gregg.search-text"}" aria-label="Search">
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary"
+                                    type="submit">{translate key="plugins.gregg.search"}</button>
+                        </span>
+                    </form>
+                </div>
+            </div>
+        </div>
 </header>
 
-<main>
+<main class="page-content-main container">
 	{block name="pageContent"}{/block}
 </main>
 
 {block name="pageFooter"}
-	<footer>
-		<div class="container">
-			{if $hasSidebar || $pageFooter}
-				<div class="sidebar row{if $pageFooter} hasUserFooter{else} noUserFooter{/if}">
-
-					{if $pageFooter}
-						<div class="user_footer col-lg-6 col-md-12">
-							{$pageFooter}
-						</div>
-					{/if}
-
-					{call_hook name="Templates::Common::Sidebar"}
-				</div>
-			{/if}
+    <div class="site-footer">
+        <div class="container">
+			<!--Modificacion de codigo -->
 			<div class="row">
+				{if $pageFooter}
+					<div class="pkp_footer_content">
+						{$pageFooter}
+					</div>
+				{/if}
+			</div>
+			<!-- Fin Modificacion codigo -->
 
+        </div>
+    </div><!-- pkp_structure_footer_wrapper -->
+	<!-- menu footer -->
+	<div class="menu-site-footer">
+		<div class="row">
+			<div class="col footer-left">
+				<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="contact"}">
+				{translate key="about.contact"}
+				</a>
+				<a href="{url router=$smarty.const.ROUTE_PAGE page="information" op="readers"}">
+					{translate key="navigation.infoForReaders"}
+				</a>
+				<a href="{url router=$smarty.const.ROUTE_PAGE page="information" op="authors"}">
+					{translate key="navigation.infoForAuthors"}
+				</a>
+			</div>
+			<div class="col footer-right">
+				<a href="{url router=$smarty.const.ROUTE_PAGE page="information" op="librarians"}">
+					{translate key="navigation.infoForLibrarians"}
+				</a>
+				<a href="{$pkpLink}">
+					Powered by PKP
+				</a>
+				<a href="https://github.com/Vitaliy-1/oldGregg">
+					oldGregg
+				</a>
 			</div>
 		</div>
-	</footer>
+	</div>
+			
+
 {/block}
 
 {load_script context="frontend" scripts=$scripts}

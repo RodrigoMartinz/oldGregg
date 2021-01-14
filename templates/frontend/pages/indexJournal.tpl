@@ -64,22 +64,7 @@
 		</section>
 	{/if}
 
-	{if $showSummary}
-	<section class="container index-journal__desc">
-		<div class="row justify-content-center">
-            {assign var="thumb" value=$currentJournal->getLocalizedData('journalThumbnail')}
-			{if $thumb}
-				<div class="col-md-2">
-                    {capture assign="url"}{url journal=$currentJournal->getPath()}{/capture}
-					<img class="img-fluid" src="{$journalFilesPath}{$currentJournal->getId()}/{$thumb.uploadName|escape:"url"}"{if $thumb.altText} alt="{$thumb.altText|escape|default:''}"{/if}>
-				</div>
-			{/if}
-			<div class="col-md-6">
-                {$currentJournal->getLocalizedSetting("description")}
-			</div>
-		</div>
-	</section>
-	{/if}
+
 
 	{if ($numAnnouncementsHomepage && $announcements|@count)}
 		<section class="container index-journal__announcements">
@@ -141,71 +126,81 @@
 			</div>
 		</section>
 	{/if}
-
-	{if !empty($publishedArticles) || !empty($popularArticles)}
-		<section class="container{if !empty($categories) && $numCategoriesHomepage} no-border{/if}">
-			<div class="row justify-content-center">
-				{if !empty($publishedArticles)}
-					<ul class="list-content col-md-6">
-						<h2 class="list-content__title">{translate key="plugins.gregg.latest"}</h2>
-						{foreach from=$publishedArticles item="publishedArticle" key="number"}
-							<li class="list-content__article">
-								{if $publishedArticle->getLocalizedTitle()}
-									<h3 class="list-content__article-title">
-										<a class="list-content__article-link"
-										   href="{url page="article" op="view" path=$publishedArticle->getBestArticleId()}">
-											{$publishedArticle->getLocalizedTitle()|escape}
-										</a>
-									</h3>
-								{/if}
-								{if !empty($publishedArticle->getAuthors())}
-									<ul class="list-content__article-authors">
-										{foreach from=$publishedArticle->getAuthors() item="publishedAuthor"}
-											<li class="list-content__article-author">
-												<span>{$publishedAuthor->getFullName()}</span>
-											</li>
-										{/foreach}
-									</ul>
-									<small class="d-block text-muted mt-2">{translate key="submissions.published"}
-										: {$publishedArticle->getDatePublished()|date_format:$dateFormatShort}</small>
-								{/if}
-							</li>
-						{/foreach}
-					</ul>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="row">
+				{if $showSummary}
+					<section class="container index-journal__desc">
+						<div class="row justify-content-center">
+							{assign var="thumb" value=$currentJournal->getLocalizedData('journalThumbnail')}
+							{if $thumb}
+								<div class="col-md-12">
+									{capture assign="url"}{url journal=$currentJournal->getPath()}{/capture}
+									<img class="img-fluid" src="{$journalFilesPath}{$currentJournal->getId()}/{$thumb.uploadName|escape:"url"}"{if $thumb.altText} alt="{$thumb.altText|escape|default:''}"{/if}>
+								</div>
+							{/if}
+							<div class="col-md-12">
+								{$currentJournal->getLocalizedSetting("description")}
+							</div>
+						</div>
+					</section>
 				{/if}
+				{if !empty($publishedArticles) || !empty($popularArticles)}
+					
+					<section class="container{if !empty($categories) && $numCategoriesHomepage} no-border{/if}">
+						<div class="row justify-content-center">
+							<div class="recent-articles-section-title col-md-12">
+								<h3 class="list-content__title">{translate key="plugins.gregg.latest"}</h3>
+							</div>
+							
+							{if !empty($publishedArticles)}
+								<div class="row">
+									{foreach from=$publishedArticles item="publishedArticle" key="number"}
+										<div class="recent-wrapper col-md-6">
+											<div class="card">
+												<div class="card-body">
+													<h4 class="card-title">
+														<a class="recent-article-title"
+														   href="{url page="article" op="view" path=$publishedArticle->getBestArticleId()}">
+															{$publishedArticle->getLocalizedTitle()|strip_unsafe_html}
+														</a>
+													</h4>
+													<p class="card-text">
+														{foreach from=$publishedArticle->getAuthors() key=k item="publishedAuthor"}
+															<span>{$publishedAuthor->getFullName()|escape}
+																
+														{/foreach}
+													</p>
+												</div>
+												<div class="card-footer">
+													<small class="text-muted">
+														{translate key="submissions.published"}
+										:
+														{$publishedArticle->getDatePublished()|date_format:"%Y-%m-%d"}
+													</small>
+												</div>
+											</div>
+										</div>
+										
 
-				{if !empty($popularArticles)}
-					<ul class="list-content col-md-6">
-						<h2 class="list-content__title">{translate key="plugins.gregg.most-viewed"}</h2>
-						{foreach from=$popularArticles item="popularArticle" key="popularNumber"}
-							<li class="list-content__article">
-								{if $popularArticle["localized_title"]}
-									<h3 class="list-content__article-title">
-										<a class="list-content__article-link"
-										   href="{url page="article" op="view" path=$popularNumber}">
-											{$popularArticle["localized_title"][{$locale}]|escape}
-										</a>
-									</h3>
-								{/if}
-								{if array_key_exists('authors', $popularArticle)}
-									<ul class="list-content__article-authors">
-										{foreach from=$popularArticle['authors'] item="popularAuthor"}
-											<li class="list-content__article-author">
-												<span>{$popularAuthor[{$locale}]['given_name']|escape}</span>
-												<span>{$popularAuthor[{$locale}]['family_name']|escape}</span>
-											</li>
-										{/foreach}
-									</ul>
-									<small class="d-block text-muted mt-2">{translate key="submissions.published"}
-										: {$popularArticle['date_published']|date_format:$dateFormatShort}</small>
-								{/if}
-							</li>
-						{/foreach}
-					</ul>
+									{/foreach}
+								</div>
+							{/if}
+						</div>
+					</section>
+					
 				{/if}
 			</div>
-		</section>
-	{/if}
+		</div>
+		<div class="col-md-4">
+			{if $hasSidebar || $pageFooter}
+				<div class="pkp_structure_sidebar">
+					{call_hook name="Templates::Common::Sidebar"}
+				</div>
+			{/if}
+		</div>
+	</div>
+	
 
 	{if !empty($categories) && $numCategoriesHomepage}
 		<section class="box_primary index-journal__categories-header">
