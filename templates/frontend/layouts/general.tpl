@@ -126,27 +126,38 @@
 	<!-- menu footer -->
 	<div class="menu-site-footer">
 		<div class="row">
-			<div class="col footer-left">
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="contact"}">
-				{translate key="about.contact"}
-				</a>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="information" op="readers"}">
-					{translate key="navigation.infoForReaders"}
-				</a>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="information" op="authors"}">
-					{translate key="navigation.infoForAuthors"}
-				</a>
-			</div>
-			<div class="col footer-right">
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="information" op="librarians"}">
-					{translate key="navigation.infoForLibrarians"}
-				</a>
-				<a href="{$pkpLink}">
-					Powered by PKP
-				</a>
-				<a href="https://github.com/Vitaliy-1/oldGregg">
-					oldGregg
-				</a>
+			<div class="col>
+				<div class="link-menu-footer">
+					<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="contact"}">
+					{translate key="about.contact"}
+					</a>
+				</div>
+				<div class="link-menu-footer">
+					<a href="{url router=$smarty.const.ROUTE_PAGE page="information" op="readers"}">
+						{translate key="navigation.infoForReaders"}
+					</a>
+				</div>
+				<div class="link-menu-footer">
+					<a href="{url router=$smarty.const.ROUTE_PAGE page="information" op="authors"}">
+						{translate key="navigation.infoForAuthors"}
+					</a>
+				</div>
+				<div class="link-menu-footer">
+					<a href="{url router=$smarty.const.ROUTE_PAGE page="information" op="librarians"}">
+						{translate key="navigation.infoForLibrarians"}
+					</a>
+				</div>
+				<div class="link-menu-footer">
+					<a href="{$pkpLink}">
+						Powered by PKP
+					</a>
+				</div>
+				<div class="link-menu-footer">
+					<a href="https://github.com/Vitaliy-1/oldGregg">
+						oldGregg
+					</a>
+				</div>
+				
 			</div>
 		</div>
 	</div>
