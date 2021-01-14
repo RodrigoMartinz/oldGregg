@@ -125,41 +125,49 @@
     </div><!-- pkp_structure_footer_wrapper -->
 	<!-- menu footer -->
 	<div class="menu-site-footer">
-		<div class="row">
-			<div class="col>
-				<div class="link-menu-footer">
-					<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="contact"}">
-					{translate key="about.contact"}
+		<nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+			<div class="container-fluid">
+			  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse justify-content-md-center">
+				<ul class="navbar-nav">
+				  <li class="nav-item active">
+					<a href="http://192.168.1.71/ehmc/index.php/ehm/about/contact" style="color: white;">
+						Contacto
 					</a>
-				</div>
-				<div class="link-menu-footer">
-					<a href="{url router=$smarty.const.ROUTE_PAGE page="information" op="readers"}">
-						{translate key="navigation.infoForReaders"}
+				  </li>
+				  <li class="nav-item">
+					<a href="http://192.168.1.71/ehmc/index.php/ehm/information/readers">
+						Para lectores/as
 					</a>
-				</div>
-				<div class="link-menu-footer">
-					<a href="{url router=$smarty.const.ROUTE_PAGE page="information" op="authors"}">
-						{translate key="navigation.infoForAuthors"}
+				  </li>
+				  <li class="nav-item">
+					<a href="http://192.168.1.71/ehmc/index.php/ehm/information/authors">
+						Para autores/as
 					</a>
-				</div>
-				<div class="link-menu-footer">
-					<a href="{url router=$smarty.const.ROUTE_PAGE page="information" op="librarians"}">
-						{translate key="navigation.infoForLibrarians"}
+				  </li>
+				  <li class="nav-item">
+					<a href="http://192.168.1.71/ehmc/index.php/ehm/information/librarians">
+						Para bibliotecarios/as
 					</a>
-				</div>
-				<div class="link-menu-footer">
-					<a href="{$pkpLink}">
+				  </li>
+				  <li class="nav-item">
+					<a href="">
 						Powered by PKP
 					</a>
-				</div>
-				<div class="link-menu-footer">
+				  </li>
+				  <li class="nav-item">
 					<a href="https://github.com/Vitaliy-1/oldGregg">
 						oldGregg
 					</a>
-				</div>
-				
+				  </li>
+				  
+				</ul>
+
+			  </div>
 			</div>
-		</div>
+		  </nav>
 	</div>
 			
 

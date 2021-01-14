@@ -60,7 +60,7 @@ class OldGreggThemePlugin extends ThemePlugin
 
 		$this->addStyle('bootstrap', 'resources/bootstrap/css/bootstrap.min.css');
 		$this->addStyle('less', 'resources/less/import.less');
-
+		
 		$this->addScript('jquery', 'resources/jquery/jquery.min.js');
 		$this->addScript('popper', 'resources/bootstrap/js/popper.min.js');
 		$this->addScript('bootstrap', 'resources/bootstrap/js/bootstrap.min.js');
@@ -72,7 +72,7 @@ class OldGreggThemePlugin extends ThemePlugin
 		if (true && (is_array($request->getRequestedArgs()) && count($request->getRequestedArgs()) == 1)) {
 			$this->addScript("article", "resources/js/article.js");
 		}
-		
+		$this->addStyle('style_theme', 'resources/css/style_theme.css');
 
 
 		$this->addStyle(
